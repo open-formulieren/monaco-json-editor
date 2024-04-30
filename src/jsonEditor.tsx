@@ -9,6 +9,7 @@ interface JSONEditorProps {
   value?: any;
   onChange: (value: any) => void;
   readOnly?: boolean;
+  showLines?: boolean;
 }
 
 type AvailableEditorProps = Pick<EditorProps, 'height'>;
@@ -17,6 +18,7 @@ const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
   value = '',
   onChange,
   readOnly = false,
+  showLines = true,
   ...props
 }) => {
   const monacoOnChange: OnChange = value => {
@@ -43,6 +45,9 @@ const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
 
   const jsonData = JSON.stringify(value, null, 2);
 
+  const extraOptions: EditorProps['options'] = {readOnly};
+  if (!showLines) extraOptions.lineNumbers = 'off';
+
   return (
     <Editor
       language="json"
@@ -50,7 +55,7 @@ const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
         minimap: {enabled: false},
         contextmenu: false,
         renderWhitespace: 'trailing',
-        readOnly,
+        ...extraOptions,
       }}
       value={jsonData}
       onChange={monacoOnChange}
