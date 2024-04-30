@@ -1,0 +1,39 @@
+{
+  "name": "@open-formulieren/monaco-json-editor",
+  "version": "0.1.0",
+  "description": "A JSON editor using the Monaco editor",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write 'src/**/*'",
+    "checkformat": "prettier --check 'src/**/*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/open-formulieren/monaco-json-editor.git"
+  },
+  "keywords": [
+    "monaco",
+    "editor",
+    "json"
+  ],
+  "author": "Maykin Media <support@maykinmedia.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/open-formulieren/monaco-json-editor/issues"
+  },
+  "homepage": "https://github.com/open-formulieren/monaco-json-editor#readme",
+  "devDependencies": {
+    "@types/react": "^18.2.79",
+    "monaco-editor": "^0.48.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}
