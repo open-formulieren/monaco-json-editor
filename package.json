@@ -26,12 +26,12 @@
   "homepage": "https://github.com/open-formulieren/monaco-json-editor#readme",
   "devDependencies": {
     "@types/react": "^18.2.79",
-    "monaco-editor": "^0.48.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@monaco-editor/react": "^4.6.0"
+    "@monaco-editor/react": "^4.6.0",
+    "monaco-editor": "^0.48.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"
