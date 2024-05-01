@@ -1,9 +1,11 @@
-import * as monaco from 'monaco-editor';
 import {Editor, loader} from '@monaco-editor/react';
 import type {EditorProps, OnChange, OnMount} from '@monaco-editor/react';
 
-// This is required to *not* fetch the editor from CDNs:
-loader.config({monaco});
+// Loading from a CDN to avoid having to setup specific Webpack configuration
+// which doesn't play well (especially with Storybook).
+// See https://www.npmjs.com/package/@monaco-editor/loader#configure-the-loader-to-load-the-monaco-as-an-npm-package
+// if we ever want to switch to the NPM module instead.
+loader.config({paths: {vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.48.0/min/vs'}});
 
 interface JSONEditorProps {
   value?: any;
