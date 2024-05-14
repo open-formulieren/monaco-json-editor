@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.4 (2024-05-14)
+
+Expose `wrapperProps`.
+
 ## 0.1.3 (2024-05-14)
 
 Fix packaging.
