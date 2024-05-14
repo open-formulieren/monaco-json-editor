@@ -14,7 +14,7 @@ interface JSONEditorProps {
   showLines?: boolean;
 }
 
-type AvailableEditorProps = Pick<EditorProps, 'height'>;
+type AvailableEditorProps = Pick<EditorProps, 'height' | 'wrapperProps'>;
 
 export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
   value = '',
