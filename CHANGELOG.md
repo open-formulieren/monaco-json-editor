@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.3 (2024-05-14)
+
+Fix packaging.
+
 ## 0.1.2 (2024-05-01)
 
 Load `monaco-editor` from the CDN.
