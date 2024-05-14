@@ -16,7 +16,7 @@ interface JSONEditorProps {
 
 type AvailableEditorProps = Pick<EditorProps, 'height'>;
 
-const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
+export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
   value = '',
   onChange,
   readOnly = false,
@@ -66,5 +66,3 @@ const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
     />
   );
 };
-
-export default JSONEditor;
