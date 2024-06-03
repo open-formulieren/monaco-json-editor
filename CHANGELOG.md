@@ -1,5 +1,10 @@
 # Changes
 
+## 0.1.5 (2024-06-03)
+
+Expose `tabSize`.
+Update `monaco-editor` to `0.49.0`.
+
 ## 0.1.4 (2024-05-14)
 
 Expose `wrapperProps`.
