@@ -1,1 +1,1 @@
-export {JSONEditor} from './jsonEditor';
+export {JSONEditor} from './jsonEditor.js';
