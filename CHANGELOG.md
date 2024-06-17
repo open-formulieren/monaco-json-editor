@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.6 (2024-06-17)
+
+Explicitly use extensions in imports.
+
 ## 0.1.5 (2024-06-03)
 
 Expose `tabSize`.
