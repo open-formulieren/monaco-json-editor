@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.7 (2024-06-17)
+
+Expose theme prop.
+
 ## 0.1.6 (2024-06-17)
 
 Explicitly use extensions in imports.
