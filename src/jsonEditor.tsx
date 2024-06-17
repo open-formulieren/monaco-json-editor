@@ -13,6 +13,7 @@ interface JSONEditorProps {
   readOnly?: boolean;
   showLines?: boolean;
   tabSize?: number;
+  theme?: 'light' | 'dark';
 }
 
 type AvailableEditorProps = Pick<EditorProps, 'height' | 'wrapperProps'>;
@@ -23,6 +24,7 @@ export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
   readOnly = false,
   showLines = true,
   tabSize = 2,
+  theme = 'light',
   ...props
 }) => {
   const monacoOnChange: OnChange = value => {
@@ -64,6 +66,7 @@ export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
       value={jsonData}
       onChange={monacoOnChange}
       onMount={monacoOnMount}
+      theme={theme === 'dark' ? 'vs-dark' : 'light'}
       {...props}
     />
   );
