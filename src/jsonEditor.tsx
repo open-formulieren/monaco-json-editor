@@ -1,5 +1,7 @@
+import {useRef} from 'react';
 import {Editor, loader} from '@monaco-editor/react';
 import type {EditorProps, OnChange, OnMount} from '@monaco-editor/react';
+import {editor} from 'monaco-editor';
 
 // Loading from a CDN to avoid having to setup specific Webpack configuration
 // which doesn't play well (especially with Storybook).
@@ -10,6 +12,8 @@ loader.config({paths: {vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/mi
 interface JSONEditorProps {
   value?: any;
   onChange: (value: any) => void;
+  onRawChange?: (code: string) => void;
+  lineCountCallback?: (numLines: number | undefined) => void;
   readOnly?: boolean;
   showLines?: boolean;
   tabSize?: number;
@@ -19,18 +23,30 @@ interface JSONEditorProps {
 type AvailableEditorProps = Pick<EditorProps, 'height' | 'wrapperProps'>;
 
 export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
-  value = '',
+  value,
   onChange,
+  onRawChange,
+  lineCountCallback,
   readOnly = false,
   showLines = true,
   tabSize = 2,
   theme = 'light',
   ...props
 }) => {
-  const monacoOnChange: OnChange = value => {
-    if (value != undefined) {
-      let updatedData: any;
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
+  const _updateLineCount = () => {
+    const editor = editorRef.current;
+    lineCountCallback?.(editor?.getModel()?.getLineCount());
+  };
+
+  const monacoOnChange: OnChange = value => {
+    _updateLineCount();
+
+    if (value != undefined) {
+      onRawChange?.(value);
+
+      let updatedData: any;
       try {
         updatedData = JSON.parse(value);
       } catch {
@@ -41,18 +57,16 @@ export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
     }
   };
 
-  const monacoOnMount: OnMount = (_, monaco) => {
+  const monacoOnMount: OnMount = (editor, monaco) => {
+    editorRef.current = editor;
+    _updateLineCount();
+
     // Disable schema autocompletions, they aren't relevant
     monaco.languages.json.jsonDefaults.setModeConfiguration({
       ...monaco.languages.json.jsonDefaults.modeConfiguration,
       completionItems: false,
     });
   };
-
-  const jsonData = JSON.stringify(value, null, 2);
-
-  const extraOptions: EditorProps['options'] = {readOnly, tabSize};
-  if (!showLines) extraOptions.lineNumbers = 'off';
 
   return (
     <Editor
@@ -61,9 +75,11 @@ export const JSONEditor: React.FC<JSONEditorProps & AvailableEditorProps> = ({
         minimap: {enabled: false},
         contextmenu: false,
         renderWhitespace: 'trailing',
-        ...extraOptions,
+        readOnly,
+        tabSize,
+        lineNumbers: showLines ? 'on' : 'off',
       }}
-      value={jsonData}
+      value={value !== undefined ? JSON.stringify(value, null, 2) : undefined}
       onChange={monacoOnChange}
       onMount={monacoOnMount}
       theme={theme === 'dark' ? 'vs-dark' : 'light'}
