@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "rootDir": "src",
     "outDir": "lib",
     "module": "esnext",
-    "target": "es2017",
+    "target": "ES2021",
     "jsx": "react-jsx",
     "declaration": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
@@ -16,7 +16,8 @@
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "lib"]
