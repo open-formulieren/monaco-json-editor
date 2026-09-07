@@ -2,16 +2,20 @@
   "name": "@open-formulieren/monaco-json-editor",
   "version": "0.2.0",
   "description": "A JSON editor using the Monaco editor",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "files": [
-    "lib/"
+    "dist/"
   ],
   "scripts": {
-    "build": "tsc",
+    "start": "npm run storybook",
+    "build": "vite build && tsc --emitDeclarationOnly --project tsconfig.prod.json",
+    "build:typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write 'src/**/*'",
-    "checkformat": "prettier --check 'src/**/*'"
+    "checkformat": "prettier --check 'src/**/*'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "repository": {
     "type": "git",
@@ -29,10 +33,25 @@
   },
   "homepage": "https://github.com/open-formulieren/monaco-json-editor#readme",
   "devDependencies": {
+    "@types/node": "^24.1.0",
     "@types/react": "^18.2.79 || ^19.0.0",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
     "monaco-editor": "^0.55.1",
     "prettier": "^3.9.5",
-    "typescript": "^6.0.3"
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.2",
+    "storybook": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "vitest": "latest",
+    "playwright": "latest",
+    "@vitest/browser-playwright": "latest",
+    "@vitest/coverage-v8": "latest"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0"

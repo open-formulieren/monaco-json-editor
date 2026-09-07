@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib",
+    "outDir": "dist",
     "module": "esnext",
     "target": "ES2021",
     "jsx": "react-jsx",
@@ -17,8 +17,11 @@
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*", ".storybook/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
