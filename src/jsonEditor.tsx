@@ -9,7 +9,7 @@ import {editor} from 'monaco-editor';
 // if we ever want to switch to the NPM module instead.
 loader.config({paths: {vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs'}});
 
-interface JSONEditorProps {
+export interface JSONEditorProps {
   value?: any;
   onChange: (value: any) => void;
   onRawChange?: (code: string) => void;

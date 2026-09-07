@@ -2,7 +2,8 @@
 
 A JSON editor using the Monaco editor.
 
-Provides a `JSONEditor` component wrapping the [Monaco editor](https://github.com/suren-atoyan/monaco-react) with sane defaults.
+Provides a `JSONEditor` component wrapping the
+[Monaco editor](https://github.com/suren-atoyan/monaco-react) with sane defaults.
 
 [![Run CI build and tests](https://github.com/open-formulieren/monaco-json-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/open-formulieren/monaco-json-editor/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40open-formulieren%2Fmonaco-json-editor)](https://www.npmjs.com/package/@open-formulieren/monaco-json-editor)
@@ -36,16 +37,10 @@ npm start
 
 3. Make code changes, check in Storybook, add tests... etc.
 
-4. Run the tests (Storybook needs to be running still!)
+4. Check that the (Typescript) build compiles cleanly:
 
 ```bash
-npm test
-```
-
-5. Check that the (Typescript) build compiles cleanly:
-
-```bash
-npm run build:esm
+npm run build
 ```
 
 Additional NPM scripts can be found in `package.json`.
