@@ -20,6 +20,7 @@ const packageRegexes = externalPackages.map(packageName => new RegExp(`^${packag
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), dts({tsconfigPath: 'tsconfig.prod.json', bundleTypes: true})],
+  base: './',
   resolve: {
     tsconfigPaths: true,
   },
