@@ -1,16 +1,17 @@
 /// <reference types="vitest/config" />
 import {resolve} from 'node:path';
-import react from '@vitejs/plugin-react';
-import {defineConfig} from 'vite';
-import {dependencies, peerDependencies} from './package.json' with {type: 'json'};
-import {storybookTest} from '@storybook/addon-vitest/vitest-plugin';
-import {playwright} from '@vitest/browser-playwright';
 
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
-const externalPackages = [
-  ...Object.keys(dependencies || {}),
-  ...Object.keys(peerDependencies || {}),
-];
+import {storybookTest} from '@storybook/addon-vitest/vitest-plugin';
+import react from '@vitejs/plugin-react';
+import {playwright} from '@vitest/browser-playwright';
+import dts from 'unplugin-dts/vite';
+import {defineConfig} from 'vite';
+
+import {peerDependencies} from './package.json' with {type: 'json'};
+
+// We deliberately do not externalize direct dependencies to make this library properly
+// self-contained.
+const externalPackages = [...Object.keys(peerDependencies || {})];
 
 // Creating regexes of the packages to make sure subpaths of the
 // packages are also treated as external
@@ -18,21 +19,19 @@ const packageRegexes = externalPackages.map(packageName => new RegExp(`^${packag
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), dts({tsconfigPath: 'tsconfig.prod.json', bundleTypes: true})],
   resolve: {
     tsconfigPaths: true,
   },
+  // actually bundle the library so that everything is self-contained, but don't bundle
+  // peer dependencies
   build: {
     lib: {
       entry: resolve(import.meta.dirname, 'src/index.ts'),
       formats: ['es'],
+      fileName: 'index',
     },
     rolldownOptions: {
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        entryFileNames: '[name].js',
-      },
       external: packageRegexes,
     },
   },

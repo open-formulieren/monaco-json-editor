@@ -1,5 +1,13 @@
 # Changes
 
+## 0.3.0 (2026-09-??)
+
+Feature release.
+
+- Support React 19.
+- Upgraded dependencies and build toolchain.
+- Hardened the CI workflows.
+
 ## 0.2.0 (2024-07-11)
 
 Usability improvements
