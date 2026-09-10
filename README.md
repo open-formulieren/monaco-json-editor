@@ -8,6 +8,26 @@ Provides a `JSONEditor` component wrapping the
 [![Run CI build and tests](https://github.com/open-formulieren/monaco-json-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/open-formulieren/monaco-json-editor/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40open-formulieren%2Fmonaco-json-editor)](https://www.npmjs.com/package/@open-formulieren/monaco-json-editor)
 
+## Installation and usage
+
+With your preferred bundler:
+
+```bash
+npm install @open-formulieren/monaco-json-editor
+```
+
+```tsx
+// main.tsx
+import {JSONEditor} from '@open-formulieren/monaco-json-editor';
+// in your JS or CSS pipeline
+import '@open-formulieren/monaco-json-editor/style.css';
+
+const MyComponent: React.FC = () => {
+  const [json, setJson] = useState({});
+  return <JSONEditor value={json} onChange={setJson} readOnly={false} />;
+};
+```
+
 ## Contributing
 
 Contributions that do not provide a direct benefit to the Open Forms project will unfortunately be
